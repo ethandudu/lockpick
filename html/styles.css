@@ -22,8 +22,9 @@ body {
   overflow: visible;
 }
 p {
-  color: #fde470;
-  color: #2f2;
+  color: #ffffff;
+  /*shadow*/
+  text-shadow: 0px 0px 1px #000, 0px 0px 2px #000, 0px 0px 3px #000, 0px 0px 4px #000, 0px 0px 5px #000;
   text-align: center;
   font-weight: 400;
   font-size: 1.2em;

@@ -9,10 +9,10 @@ let minRot = -90,
   mouseSmoothing = 2,
   keyRepeatRate = 25,
   cylRotSpeed = 3,
-  pinDamage = 20,
-  pinHealth = 100,
+  pinDamage = 0,
+  pinHealth = 100000,
   pinDamageInterval = 150,
-  numPins = 5,
+  numPins = 1,
   userPushingCyl = false,
   gameOver = false,
   gamePaused = false,
@@ -45,12 +45,10 @@ $(function () {
 
   $('body').on('keydown', function (e) {
     if (
-      (e.keyCode == 87 ||
-        e.keyCode == 65 ||
-        e.keyCode == 83 ||
+      (e.keyCode == 90 ||
+        e.keyCode == 81 ||
         e.keyCode == 68 ||
-        e.keyCode == 37 ||
-        e.keyCode == 39) &&
+        e.keyCode == 83) &&
       !userPushingCyl &&
       !gameOver &&
       !gamePaused
@@ -61,12 +59,10 @@ $(function () {
 
   $('body').on('keyup', function (e) {
     if (
-      (e.keyCode == 87 ||
-        e.keyCode == 65 ||
-        e.keyCode == 83 ||
-        e.keyCode == 68 ||
-        e.keyCode == 37 ||
-        e.keyCode == 39) &&
+      (e.keyCode == 90 || //z
+        e.keyCode == 81 || //q
+        e.keyCode == 68 || //d
+        e.keyCode == 83) && //s
       !gameOver
     ) {
       unpushCyl();
@@ -172,7 +168,6 @@ function breakPin() {
   gamePaused = true;
   clearInterval(cylRotationInterval);
   numPins--;
-  $('span').text(numPins);
   pinTop = pin.find('.top');
   pinBott = pin.find('.bott');
   tl = new TimelineLite();
@@ -270,10 +265,10 @@ window.addEventListener('message', function (event) {
     mouseSmoothing = 2;
     keyRepeatRate = 25;
     cylRotSpeed = 3;
-    pinDamage = 20;
+    pinDamage = 0;
     pinHealth = 100;
     pinDamageInterval = 150;
-    numPins = 5;
+    numPins = 1;
     userPushingCyl = false;
     gameOver = false;
     gamePaused = false;
@@ -282,7 +277,6 @@ window.addEventListener('message', function (event) {
     driver = $('#driver');
     cylRotationInterval = null;
     pinLastDamaged = null;
-    $('span').text(numPins);
 
     reset();
   }
